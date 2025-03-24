@@ -33,6 +33,11 @@ pip install -r requirements.test.txt
 If using sqlite, you can pass this step.
 This guide intends to help create PostgreSQL db
 
+```bash
+sudo apt install postgresql
+sudo -u postgres psql
+```
+
 ```sql
 DROP DATABASE IF EXISTS repo_app;
 
@@ -40,6 +45,8 @@ CREATE DATABASE repo_app;
 
 CREATE ROLE repo_app WITH LOGIN PASSWORD 'password';
 GRANT ALL PRIVILEGES ON DATABASE repo_app TO repo_app;
+GRANT ALL PRIVILEGES ON SCHEMA public TO repo_app;
+ALTER USER repo_app WITH SUPERUSER;
 ```
 
 ### Create environment file
@@ -100,4 +107,9 @@ ENVIRONMENT=local celery -A celery_tasks beat -l info
 ENVIRONMENT=local celery -A celery_tasks flower
 ```
 
-Then navigate to http://localhost:5555/
+
+## Run tests
+
+```bash
+python manage.py test
+```
