@@ -1,0 +1,21 @@
+
+
+{% extends '../base.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<div class="container mt-5">
+    <h1 class="text-center">GitHub Repositories Finder</h1>
+    <div class="mb-3">
+      <label for="username" class="form-label">Enter GitHub Username:</label>
+      <input type="text" id="username" class="form-control" placeholder="e.g., octocat" />
+    </div>
+    <button id="searchBtn" class="btn btn-primary">Search</button>
+
+    <div id="result" class="mt-5">
+      <h3>Repositories:</h3>
+      <ul id="repoList" class="list-group"></ul>
+    </div>
+  </div>
+{% endblock main_content %}

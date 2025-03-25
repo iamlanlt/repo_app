@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,12 +7,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="icon" href={% static "favicon.png" %}>
+
     {% block essential_css %}
       {% include "includes/css.html" %}
     {% endblock essential_css %}
 
     {% block extra_css %}{% endblock extra_css %}
-    <title></title>
+    <title>GitHub Repositories Finder</title>
   </head>
 
   <body>

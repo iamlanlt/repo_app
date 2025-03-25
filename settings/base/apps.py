@@ -15,6 +15,9 @@ EXTERNAL_APPS = [
     "django_celery_beat",
     "django_celery_results",
 ]
-INTERNAL_APPS = []
+
+INTERNAL_APPS = [
+    "repo_app",
+]
 
 INSTALLED_APPS = DJANGO_APPs + EXTERNAL_APPS + INTERNAL_APPS
