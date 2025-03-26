@@ -6,16 +6,20 @@
 {% block main_content %}
 
 <div class="container mt-5">
-    <h1 class="text-center">GitHub Repositories Finder</h1>
-    <div class="mb-3">
-      <label for="username" class="form-label">Enter GitHub Username:</label>
-      <input type="text" id="username" class="form-control" placeholder="e.g., octocat" />
-    </div>
-    <button id="searchBtn" class="btn btn-primary">Search</button>
+  <h1 class="text-center mb-4">🔎 GitHub Repositories Finder</h1>
 
-    <div id="result" class="mt-5">
-      <h3>Repositories:</h3>
-      <ul id="repoList" class="list-group"></ul>
+  <div class="card shadow-sm p-4">
+    <div class="row g-3">
+      <div class="col-md-9">
+        <input type="text" id="username" class="form-control" placeholder="Enter GitHub username., e.g., octocat" />
+      </div>
+      <div class="col-md-3">
+        <button id="search" class="btn btn-primary w-100">Search</button>
+      </div>
     </div>
   </div>
+
+  <div id="result" class="mt-4"></div>
+</div>
+
 {% endblock main_content %}
