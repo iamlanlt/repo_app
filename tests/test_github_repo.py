@@ -10,7 +10,13 @@ class GitHubRepoViewTest(TestCase):
         self.invalid_username = "invalid_username"
         self.url = "/get-repos/"
 
-    # Test 1: Valid username
+    # Missing username
+    def test_missing_username(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.json()["error"], "Username is required")
+
+    # Valid username
     @patch('requests.get')
     def test_valid_username(self, mock_get):
         mock_response = [
@@ -25,13 +31,7 @@ class GitHubRepoViewTest(TestCase):
         self.assertIn("repos", response.json())
         self.assertEqual(len(response.json()["repos"]), 2)
 
-    # Test 2: Missing username
-    def test_missing_username(self):
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(response.json()["error"], "Username is required")
-
-    # Test 3: Invalid username
+    # Invalid username
     @patch('requests.get')
     def test_invalid_username(self, mock_get):
         mock_get.return_value.status_code = status.HTTP_404_NOT_FOUND
@@ -41,7 +41,7 @@ class GitHubRepoViewTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
         self.assertEqual(response.json()["error"], "Failed to fetch data from GitHub. Please try again later.")
 
-    # Test 4: GitHub API failure
+    # GitHub API failure
     @patch('requests.get')
     def test_github_api_failure(self, mock_get):
         mock_get.side_effect = requests.exceptions.RequestException("API Error")
